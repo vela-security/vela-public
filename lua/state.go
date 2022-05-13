@@ -1522,7 +1522,7 @@ func (ls *LState) Get(idx int) LValue {
 	return LNil
 }
 
-func (ls *LState) PushAny(v any) {
+func (ls *LState) PushAny(v interface{}) {
 	switch value := v.(type) {
 	case nil:
 		ls.reg.Push(LNil)

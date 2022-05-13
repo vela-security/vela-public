@@ -11,7 +11,7 @@ type builder struct {
 	execFn     func() error
 	completeFn func()
 	errorFn    func(error)
-	panicFn    func(any)
+	panicFn    func(interface{})
 	timeoutFn  func()
 }
 
@@ -34,7 +34,7 @@ func (b *builder) OnError(fn func(error)) *builder {
 	return b
 }
 
-func (b *builder) OnPanic(fn func(any)) *builder {
+func (b *builder) OnPanic(fn func(interface{})) *builder {
 	return b
 }
 
