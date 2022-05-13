@@ -23,7 +23,7 @@ type TnlByEnv interface { //tunnel by env
 	TnlIsDown() bool
 	TnlSend(Opcode, interface{}) error
 	HTTP(string, string, string, io.Reader, http.Header) HTTPResponse
-	PostJSON(string, any, any) error
-	Stream(string, any) (HTTPStream, error)
+	PostJSON(string, interface{}, interface{}) error
+	Stream(string, interface{}) (HTTPStream, error)
 	WithTnl(interface{})
 }
