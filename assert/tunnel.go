@@ -13,7 +13,7 @@ type HTTPStream interface {
 
 type HTTPResponse interface {
 	Close()
-	JSON(any) error
+	JSON(interface{}) error
 	SaveFile(string) (string, error)
 }
 
@@ -21,7 +21,7 @@ type TnlByEnv interface { //tunnel by env
 	TnlName() string
 	TnlVersion() string
 	TnlIsDown() bool
-	TnlSend(Opcode, any) error
+	TnlSend(Opcode, interface{}) error
 	HTTP(string, string, string, io.Reader, http.Header) HTTPResponse
 	PostJSON(string, any, any) error
 	Stream(string, any) (HTTPStream, error)
