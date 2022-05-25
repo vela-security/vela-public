@@ -5,6 +5,8 @@ type Bucket interface {
 	Replace(string, interface{}, int) error //key , value , expire
 	Delete(string) error                    //key
 	DeleteBucket(string) error              //bucket name
+	Range(func(string, interface{}))        //range function(key , value)
+	Count() int                             // count key
 	Get(string) (interface{}, error)        //key
 	Incr(string, int, int) (int, error)
 	Int(string) int
