@@ -1,7 +1,6 @@
 package lua
 
 import (
-	"bytes"
 	"errors"
 )
 
@@ -32,16 +31,15 @@ func (s Slice) String() string {
 	if n == 0 {
 		return "[]"
 	}
+	enc := Json(0)
+	enc.Arr("")
 
-	var buf bytes.Buffer
-	buf.WriteByte('[')
 	for i := 0; i < n; i++ {
-		if i != 0 {
-			buf.WriteByte(',')
-		}
-		buf.WriteString(s[i].String())
+		enc.append(S2B(s[i].String()))
+		enc.Char(',')
 	}
-	return buf.String()
+	enc.End("]")
+	return B2S(enc.Bytes())
 }
 
 func (s *Slice) Append(lv LValue) {

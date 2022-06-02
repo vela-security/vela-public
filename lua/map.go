@@ -100,7 +100,7 @@ func (m *Map) NewMeta(L *LState, key LValue, val LValue) {
 }
 
 func (m *Map) countL(L *LState) int {
-	L.PushAny(len(m.entry))
+	L.Push(LInt(len(m.entry)))
 	return 1
 }
 

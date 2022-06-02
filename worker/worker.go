@@ -67,6 +67,8 @@ func (w *Worker) Start() error {
 		return fmt.Errorf("%s worker not found kill", w.name)
 	}
 	w.env.Spawn(0, w.task)
+	w.V(lua.PTRun)
+
 	return nil
 }
 
