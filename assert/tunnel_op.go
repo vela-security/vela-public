@@ -14,7 +14,8 @@ const (
 
 const (
 	OpEvent Opcode = iota + 100
-	OpCoreService
+	OpTask
+	OpSpdx
 )
 
 const (
@@ -40,8 +41,9 @@ var opcodeNames = map[Opcode]string{
 	OpDeleted:   "删除节点",
 	OpUpgrade:   "节点客户端升级",
 
-	OpEvent:       "上报事件",
-	OpCoreService: "上报 rock-go 内部服务运行信息",
+	OpEvent: "上报事件",
+	OpTask:  "上报 vela task 内部服务运行信息",
+	OpSpdx:  "上报 software spdx info",
 
 	OpAccount:    "上报系统账户信息",
 	OpCPU:        "上报 CPU 信息",

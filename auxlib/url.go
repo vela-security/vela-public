@@ -1,6 +1,7 @@
 package auxlib
 
 import (
+	"fmt"
 	"github.com/vela-security/vela-public/lua"
 	"net/url"
 	"strconv"
@@ -122,6 +123,21 @@ func (u *URL) Hostname() string {
 	}
 
 	return u.x.Hostname()
+}
+
+func (u *URL) Path() string {
+	if u.x == nil {
+		return ""
+	}
+	return u.x.Path
+}
+
+func (u *URL) Request() string {
+	if u.x == nil {
+		return ""
+	}
+
+	return fmt.Sprintf("%s://%s%s", u.x.Scheme, u.x.Host, u.x.Path)
 }
 
 func (u *URL) parse() (err error) {

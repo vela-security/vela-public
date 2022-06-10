@@ -23,4 +23,5 @@ type hide struct {
 	Vip      []string
 	Edition  string
 	Hostname string
+	Protect  bool
 }

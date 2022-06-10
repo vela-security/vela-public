@@ -1,7 +1,6 @@
 package lua
 
 import (
-	"fmt"
 	"github.com/vela-security/vela-public/grep"
 	"sync"
 )
@@ -19,12 +18,27 @@ func NewMap(cap int, safe bool) *Map {
 	}
 }
 
-func (m *Map) String() string                     { return fmt.Sprintf("map: %p", m) }
+func (m *Map) String() string                     { return B2S(m.Byte()) }
 func (m *Map) Type() LValueType                   { return LTMap }
 func (m *Map) AssertFloat64() (float64, bool)     { return 0, false }
 func (m *Map) AssertString() (string, bool)       { return "", false }
 func (m *Map) AssertFunction() (*LFunction, bool) { return nil, false }
 func (m *Map) Peek() LValue                       { return m }
+
+func (m *Map) Byte() []byte {
+	if m.safe {
+		m.mutex.RLock()
+		defer m.mutex.RUnlock()
+	}
+
+	enc := Json(m.Len())
+	enc.Tab("")
+	for k, v := range m.entry {
+		enc.KV(k, v.String())
+	}
+	enc.End("}")
+	return enc.Bytes()
+}
 
 func (m *Map) Keys() []string {
 	if m.safe {
