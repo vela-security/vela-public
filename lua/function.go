@@ -57,7 +57,7 @@ func (uv *Upvalue) Value() LValue {
 	if uv.closed || uv.reg == nil {
 		return uv.value
 	}
-	//return uv.reg.GetCodeVM(uv.index)
+	//return uv.reg.GetCodeVM(uv.Index)
 	return uv.reg.array[uv.index]
 }
 

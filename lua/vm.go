@@ -808,7 +808,7 @@ func init() {
 			//}
 			//直接运行
 
-			//if lv.Type() == LTGFunction {
+			//if lv.Typ() == LTGFunction {
 			//	lv.(*GFunction).xcall(L , reg , RA , nargs , nret)
 			//	return 0
 			//}

@@ -5,8 +5,8 @@ import (
 )
 
 var (
-	overflowE = errors.New("index over flow")
-	tooSmallE = errors.New("index too small")
+	overflowE = errors.New("Index over flow")
+	tooSmallE = errors.New("Index too small")
 	invalidE  = errors.New("invalid slice value")
 )
 

@@ -4,11 +4,10 @@ import (
 	"fmt"
 )
 
-
 type ProcData struct {
 	private bool
 	code    string
-	Data   LFace
+	Data    LFace
 }
 
 func NewProcData(v LFace) *ProcData {
@@ -50,9 +49,8 @@ func (pd *ProcData) Set(v LFace) {
 	pd.Data = v
 }
 
-
 //type SuperIO struct { ProcEx }
-//func (s *SuperIO) Type() string                     { return "superIO" }
+//func (s *SuperIO) Typ() string                     { return "superIO" }
 //func (s *SuperIO) name() string                     { return "superIO" }
 //func (s *SuperIO) Close() error                     { return NotFound  }
 //func (s *SuperIO) start() error                     { return NotFound  }

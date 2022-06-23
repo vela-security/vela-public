@@ -360,7 +360,7 @@ func (ad *AnyData) Getter(L *LState, key string) (LValue, bool) {
 	return lv, true
 }
 
-func (ad *AnyData) index(L *LState, key string) LValue {
+func (ad *AnyData) Index(L *LState, key string) LValue {
 	if lv, ok := ad.inMeta(key); ok {
 		return lv
 	}
@@ -388,7 +388,7 @@ func (ad *AnyData) index(L *LState, key string) LValue {
 	}
 }
 
-func (ad *AnyData) newIndex(L *LState, key string, val LValue) {
+func (ad *AnyData) NewIndex(L *LState, key string, val LValue) {
 
 	obj, ok := ad.Data.(newIndex)
 	if ok {

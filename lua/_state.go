@@ -439,7 +439,7 @@ func (rg *registry) Get(reg int) LValue {
 	return rg.array[reg]
 }
 
-// CopyRange will move a section of values from index `start` to index `regv`
+// CopyRange will move a section of values from Index `start` to Index `regv`
 // It will move `n` values.
 // `limit` specifies the maximum end range that can be copied from. If it's set to -1, then it defaults to stopping at
 // the top of the registry (values beyond the top are not initialized, so if specifying an alternative `limit` you should
@@ -1064,7 +1064,7 @@ func (ls *LState) getField(obj LValue, key LValue) LValue {
 		metaindex := ls.metaOp1(curobj, "__index")
 		if metaindex == LNil {
 			if !istable {
-				ls.RaiseError("attempt to index a non-table object(%v) with key '%s'", curobj.Type().String(), key.String())
+				ls.RaiseError("attempt to Index a non-table object(%v) with key '%s'", curobj.Type().String(), key.String())
 			}
 			return LNil
 		}
@@ -1095,7 +1095,7 @@ func (ls *LState) getFieldString(obj LValue, key string) LValue {
 		metaindex := ls.metaOp1(curobj, "__index")
 		if metaindex == LNil {
 			if !istable {
-				ls.RaiseError("attempt to index a non-table object(%v) with key '%s'", curobj.Type().String(), key)
+				ls.RaiseError("attempt to Index a non-table object(%v) with key '%s'", curobj.Type().String(), key)
 			}
 			return LNil
 		}
@@ -1126,7 +1126,7 @@ func (ls *LState) setField(obj LValue, key LValue, value LValue) {
 		metaindex := ls.metaOp1(curobj, "__newindex")
 		if metaindex == LNil {
 			if !istable {
-				ls.RaiseError("attempt to index a non-table object(%v) with key '%s'", curobj.Type().String(), key.String())
+				ls.RaiseError("attempt to Index a non-table object(%v) with key '%s'", curobj.Type().String(), key.String())
 			}
 			ls.RawSet(tb, key, value)
 			return
@@ -1158,7 +1158,7 @@ func (ls *LState) setFieldString(obj LValue, key string, value LValue) {
 		metaindex := ls.metaOp1(curobj, "__newindex")
 		if metaindex == LNil {
 			if !istable {
-				ls.RaiseError("attempt to index a non-table object(%v) with key '%s'", curobj.Type().String(), key)
+				ls.RaiseError("attempt to Index a non-table object(%v) with key '%s'", curobj.Type().String(), key)
 			}
 			tb.RawSetString(key, value)
 			return
@@ -1711,9 +1711,9 @@ func (ls *LState) GetTable(obj LValue, key LValue) LValue {
 
 func (ls *LState) RawSet(tb *LTable, key LValue, value LValue) {
 	if n, ok := key.(LNumber); ok && math.IsNaN(float64(n)) {
-		ls.RaiseError("table index is NaN")
+		ls.RaiseError("table Index is NaN")
 	} else if key == LNil {
-		ls.RaiseError("table index is nil")
+		ls.RaiseError("table Index is nil")
 	}
 	tb.RawSet(key, value)
 }
@@ -2070,7 +2070,7 @@ func (ls *LState) RemoveContext() context.Context {
 	return oldctx
 }
 
-// Converts the Lua value at the given acceptable index to the chan LValue.
+// Converts the Lua value at the given acceptable Index to the chan LValue.
 func (ls *LState) ToChannel(n int) chan LValue {
 	if lv, ok := ls.Get(n).(LChannel); ok {
 		return (chan LValue)(lv)

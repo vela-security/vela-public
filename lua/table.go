@@ -143,7 +143,7 @@ func (tb *LTable) Remove(pos int) LValue {
 	return oldval
 }
 
-// RawSet sets a given LValue to a given index without the __newindex metamethod.
+// RawSet sets a given LValue to a given Index without the __newindex metamethod.
 // It is recommended to use `RawSetString` or `RawSetInt` for performance
 // if you already know the given LValue is a string or number.
 func (tb *LTable) RawSet(key LValue, value LValue) {
@@ -200,7 +200,7 @@ func (tb *LTable) RawSetInt(key int, value LValue) {
 	}
 }
 
-// RawSetString sets a given LValue to a given string index without the __newindex metamethod.
+// RawSetString sets a given LValue to a given string Index without the __newindex metamethod.
 func (tb *LTable) RawSetString(key string, value LValue) {
 	if tb.strdict == nil {
 		tb.strdict = make(map[string]LValue, defaultHashCap)
@@ -223,7 +223,7 @@ func (tb *LTable) RawSetString(key string, value LValue) {
 	}
 }
 
-// RawSetH sets a given LValue to a given index without the __newindex metamethod.
+// RawSetH sets a given LValue to a given Index without the __newindex metamethod.
 func (tb *LTable) RawSetH(key LValue, value LValue) {
 	if s, ok := key.(LString); ok {
 		tb.RawSetString(string(s), value)

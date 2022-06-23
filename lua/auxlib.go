@@ -596,7 +596,7 @@ func (ls *LState) PreloadModule(name string, loader LGFunction) {
 	ls.SetField(preload, name, ls.NewFunction(loader))
 }
 
-// Checks whether the given index is an LChannel and returns this channel.
+// Checks whether the given Index is an LChannel and returns this channel.
 func (ls *LState) CheckChannel(n int) chan LValue {
 	v := ls.Get(n)
 	if ch, ok := v.(LChannel); ok {
@@ -606,7 +606,7 @@ func (ls *LState) CheckChannel(n int) chan LValue {
 	return nil
 }
 
-// If the given index is a LChannel, returns this channel. If this argument is absent or is nil, returns ch. Otherwise, raises an error.
+// If the given Index is a LChannel, returns this channel. If this argument is absent or is nil, returns ch. Otherwise, raises an error.
 func (ls *LState) OptChannel(n int, ch chan LValue) chan LValue {
 	v := ls.Get(n)
 	if v == LNil {
@@ -618,8 +618,6 @@ func (ls *LState) OptChannel(n int, ch chan LValue) chan LValue {
 	ls.TypeError(n, LTChannel)
 	return nil
 }
-
-
 
 /* }}} */
 

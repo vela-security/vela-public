@@ -212,8 +212,8 @@ func TestToTable(t *testing.T) {
 	L.Push(LNumber(10))
 	L.Push(LString("99.9"))
 	L.Push(L.NewTable())
-	errorIfFalse(t, L.ToTable(1) == nil, "index 1 must be nil")
-	errorIfFalse(t, L.ToTable(2) == nil, "index 2 must be nil")
+	errorIfFalse(t, L.ToTable(1) == nil, "Index 1 must be nil")
+	errorIfFalse(t, L.ToTable(2) == nil, "Index 2 must be nil")
 	errorIfNotEqual(t, L.Get(3), L.ToTable(3))
 }
 
@@ -223,8 +223,8 @@ func TestToFunction(t *testing.T) {
 	L.Push(LNumber(10))
 	L.Push(LString("99.9"))
 	L.Push(L.NewFunction(func(L *LState) int { return 0 }))
-	errorIfFalse(t, L.ToFunction(1) == nil, "index 1 must be nil")
-	errorIfFalse(t, L.ToFunction(2) == nil, "index 2 must be nil")
+	errorIfFalse(t, L.ToFunction(1) == nil, "Index 1 must be nil")
+	errorIfFalse(t, L.ToFunction(2) == nil, "Index 2 must be nil")
 	errorIfNotEqual(t, L.Get(3), L.ToFunction(3))
 }
 
@@ -234,8 +234,8 @@ func TestToUserData(t *testing.T) {
 	L.Push(LNumber(10))
 	L.Push(LString("99.9"))
 	L.Push(L.NewUserData())
-	errorIfFalse(t, L.ToUserData(1) == nil, "index 1 must be nil")
-	errorIfFalse(t, L.ToUserData(2) == nil, "index 2 must be nil")
+	errorIfFalse(t, L.ToUserData(1) == nil, "Index 1 must be nil")
+	errorIfFalse(t, L.ToUserData(2) == nil, "Index 2 must be nil")
 	errorIfNotEqual(t, L.Get(3), L.ToUserData(3))
 }
 
@@ -246,8 +246,8 @@ func TestToChannel(t *testing.T) {
 	L.Push(LString("99.9"))
 	var ch chan LValue
 	L.Push(LChannel(ch))
-	errorIfFalse(t, L.ToChannel(1) == nil, "index 1 must be nil")
-	errorIfFalse(t, L.ToChannel(2) == nil, "index 2 must be nil")
+	errorIfFalse(t, L.ToChannel(1) == nil, "Index 1 must be nil")
+	errorIfFalse(t, L.ToChannel(2) == nil, "Index 2 must be nil")
 	errorIfNotEqual(t, ch, L.ToChannel(3))
 }
 

@@ -30,6 +30,7 @@ const (
 	OpService
 	OpSocket
 	OpSysInfo
+	OpProcessSnapshot
 )
 
 var opcodeNames = map[Opcode]string{
@@ -45,17 +46,18 @@ var opcodeNames = map[Opcode]string{
 	OpTask:  "上报 vela task 内部服务运行信息",
 	OpSpdx:  "上报 software spdx info",
 
-	OpAccount:    "上报系统账户信息",
-	OpCPU:        "上报 CPU 信息",
-	OpDiskIO:     "上报磁盘 I/O",
-	OpFileSystem: "上报文件系统",
-	OpListen:     "上报端口监听",
-	OpMemory:     "上报内存信息",
-	OpNetwork:    "上报网络信息",
-	OpProcess:    "上报进程信息",
-	OpService:    "上报系统服务信息",
-	OpSocket:     "上报 socket 连接信息",
-	OpSysInfo:    "上报节点基本信息",
+	OpAccount:         "上报系统账户信息",
+	OpCPU:             "上报 CPU 信息",
+	OpDiskIO:          "上报磁盘 I/O",
+	OpFileSystem:      "上报文件系统",
+	OpListen:          "上报端口监听",
+	OpMemory:          "上报内存信息",
+	OpNetwork:         "上报网络信息",
+	OpProcess:         "上报进程信息",
+	OpService:         "上报系统服务信息",
+	OpSocket:          "上报 socket 连接信息",
+	OpSysInfo:         "上报节点基本信息",
+	OpProcessSnapshot: "上报进程信息快照",
 }
 
 // Opcode minion 节点操作码

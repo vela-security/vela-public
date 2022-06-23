@@ -32,7 +32,7 @@ var (
 // Kind is a node type.
 type Kind int
 
-// Key Type.
+// Key Typ.
 // Key can be a set of any characters include unicode chars with null bytes.
 type Key []byte
 

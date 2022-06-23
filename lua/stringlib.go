@@ -189,7 +189,7 @@ func checkCaptureIndex(L *LState, m *pm.MatchData, idx int) {
 		return
 	}
 	if idx >= m.CaptureLength() {
-		L.RaiseError("invalid capture index")
+		L.RaiseError("invalid capture Index")
 	}
 }
 

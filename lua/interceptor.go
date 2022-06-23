@@ -30,7 +30,7 @@ func interceptorCall(L *LState, inst uint32, baseframe *callFrame) bool {
 		reg := L.reg
 		RA := L.currentFrame.LocalBase + (int(inst>>18) & 0xff)
 		lv := reg.GetCodeVM(RA)
-		if lv.Type() != LTGFunction {
+		if lv.Typ() != LTGFunction {
 			return false
 		}
 
@@ -53,7 +53,7 @@ func interceptorSetTableHelper(L *LState, v interface{}, key LValue, val LValue)
 	case NewMetaEx:
 		vx.NewMeta(L, key, val)
 	default:
-		L.RaiseError("interceptor attempt to index a non-table object(%v) with key '%s'", L.Type().String(), key.String())
+		L.RaiseError("interceptor attempt to Index a non-table object(%v) with key '%s'", L.Type().String(), key.String())
 	}
 }
 
@@ -83,7 +83,7 @@ func interceptorSetTable(L *LState, inst uint32, baseframe *callFrame) bool {
 		lv.(*Map).NewMeta(L, key, val)
 
 	case LTKv, LTSkv:
-		L.RaiseError("interceptor attempt to index a non-table object(%v) with key '%s'", L.Type().String(), key.String())
+		L.RaiseError("interceptor attempt to Index a non-table object(%v) with key '%s'", L.Type().String(), key.String())
 	default:
 		return false
 	}
@@ -104,7 +104,7 @@ func interceptorSetTableEks(L *LState, inst uint32, baseframe *callFrame) bool {
 		lv.(*ProcData).Data.NewIndex(L, key, L.rkValue(C))
 		return true
 	case LTAnyData:
-		lv.(*AnyData).newIndex(L, key, L.rkValue(C))
+		lv.(*AnyData).NewIndex(L, key, L.rkValue(C))
 		return true
 
 	case LTMap:
@@ -120,13 +120,13 @@ func interceptorSetTableEks(L *LState, inst uint32, baseframe *callFrame) bool {
 		case NewIndexEx:
 			vx.NewIndex(L, key, L.rkValue(C))
 		default:
-			L.RaiseError("interceptor attempt to index a object not found  with key '%s'", key)
+			L.RaiseError("interceptor attempt to Index a object not found  with key '%s'", key)
 		}
 
 		return true
 
 	case LTKv, LTSkv:
-		L.RaiseError("interceptor attempt to index a non-table object(%v) with key '%s'", L.Type().String(), key)
+		L.RaiseError("interceptor attempt to Index a non-table object(%v) with key '%s'", L.Type().String(), key)
 		return true
 	}
 	return false
@@ -190,7 +190,7 @@ func interceptorGetTableEks(L *LState, inst uint32, baseframe *callFrame) bool {
 		reg.Set(RA, lv.(*ProcData).Data.Index(L, L.rkString(C)))
 		return true
 	case LTAnyData:
-		reg.Set(RA, lv.(*AnyData).index(L, L.rkString(C)))
+		reg.Set(RA, lv.(*AnyData).Index(L, L.rkString(C)))
 		return true
 	case LTKv:
 		reg.Set(RA, lv.(*userKV).Get(L.rkString(C)))
@@ -205,14 +205,14 @@ func interceptorGetTableEks(L *LState, inst uint32, baseframe *callFrame) bool {
 
 	case LTSlice:
 		reg.Set(RA, lv.(Slice).Index(L, L.rkString(C)))
-		//L.RaiseError("interceptor slice index not found")
+		//L.RaiseError("interceptor slice Index not found")
 		return true
 
 	case LTObject:
 		if obj, ok := lv.(IndexEx); ok {
 			reg.Set(RA, obj.Index(L, L.rkString(C)))
 		} else {
-			L.RaiseError("interceptor attempt to index a object(%v) with %v", L.Type().String(), L.rkValue(C))
+			L.RaiseError("interceptor attempt to Index a object(%v) with %v", L.Type().String(), L.rkValue(C))
 		}
 		return true
 	}
@@ -234,7 +234,7 @@ func interceptorSelf(L *LState, inst uint32, baseframe *callFrame) bool {
 		reg.Set(RA+1, obj)
 		return true
 	case LTAnyData:
-		reg.Set(RA, obj.(*AnyData).index(L, L.rkString(C)))
+		reg.Set(RA, obj.(*AnyData).Index(L, L.rkString(C)))
 		reg.Set(RA+1, obj)
 		return true
 	case LTKv:
@@ -256,7 +256,7 @@ func interceptorSelf(L *LState, inst uint32, baseframe *callFrame) bool {
 			reg.Set(RA, lv.MetaTable(L, L.rkString(C)))
 			reg.Set(RA+1, obj)
 		} else {
-			L.RaiseError("attempt to index a object(%v) with %v", L.Type().String(), L.rkValue(C))
+			L.RaiseError("attempt to Index a object(%v) with %v", L.Type().String(), L.rkValue(C))
 		}
 		return true
 	}

@@ -889,7 +889,7 @@ func compileNumberForStmt(context *funcContext, stmt *ast.NumberForStmt) { // {{
 
 	context.EnterBlock(endlabel, stmt)
 	reg := context.RegTop()
-	rindex := context.RegisterLocalVar("(for index)")
+	rindex := context.RegisterLocalVar("(for Index)")
 	ecupdate(ec, ecLocal, rindex, 0)
 	compileExpr(context, reg, stmt.Init, ec)
 
