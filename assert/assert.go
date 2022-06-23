@@ -53,7 +53,6 @@ type auxiliary interface {
 	Notify()                 //监控退出信号
 	Kill(os.Signal)          //退出
 	Bucket(...string) Bucket //缓存
-	RemoveBucket(...string)  //删除bucket
 	Adt() interface{}        //审计对象
 }
 
