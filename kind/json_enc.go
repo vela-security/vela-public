@@ -296,6 +296,15 @@ func (enc *JsonEncoder) Arr(name string) {
 	enc.WriteByte('[')
 }
 
+func (enc *JsonEncoder) Append(val []byte) {
+	n := len(val)
+	if n == 0 {
+		return
+	}
+	enc.cache.Write(val)
+	enc.cache.WriteByte(',')
+}
+
 func (enc *JsonEncoder) Raw(key string, val []byte) {
 	n := len(val)
 	if n == 0 {

@@ -17,13 +17,13 @@ func (px *Px) LValue(lv lua.LValue) {
 	switch lv.Type() {
 
 	case lua.LTUserData:
-		px.Object(lv.Peek().(*lua.LUserData))
+		px.Object(lv.Peek().(*lua.LUserData).Data)
 
 	case lua.LTProcData:
-		px.Object(lv.Peek().(*lua.ProcData))
+		px.Object(lv.Peek().(*lua.ProcData).Data)
 
 	case lua.LTAnyData:
-		px.Object(lv.Peek().(*lua.AnyData))
+		px.Object(lv.Peek().(*lua.AnyData).Data)
 
 	case lua.LTObject:
 		px.Object(lv.Peek())

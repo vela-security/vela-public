@@ -1,6 +1,7 @@
 package assert
 
 import (
+	opcode "github.com/vela-security/vela-opcode"
 	"io"
 	"net/http"
 )
@@ -21,7 +22,7 @@ type TnlByEnv interface { //tunnel by env
 	TnlName() string
 	TnlVersion() string
 	TnlIsDown() bool
-	TnlSend(Opcode, interface{}) error
+	TnlSend(opcode.Opcode, interface{}) error
 	DoHTTP(*http.Request) HTTPResponse
 	HTTP(string, string, string, io.Reader, http.Header) HTTPResponse
 	PostJSON(string, interface{}, interface{}) error

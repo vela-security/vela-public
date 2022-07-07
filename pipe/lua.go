@@ -22,7 +22,7 @@ func (px *Px) CheckMany(L *lua.LState, opt ...func(*Px)) {
 		px.LValue(L.Get(px.seek + 1))
 
 	default:
-		for idx := px.seek + 2; idx <= n; idx++ {
+		for idx := px.seek + 1; idx <= n; idx++ {
 			px.LValue(L.Get(idx))
 		}
 	}
